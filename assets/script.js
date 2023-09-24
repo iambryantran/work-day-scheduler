@@ -35,14 +35,19 @@ $(function () {
 
     setInterval(function() {
       var currentHour = dayjs().format('H');
+
       hourBlock = 0;
+
+
       if (hourBlock < currentHour) {
         // change color to grey
         document.getElementById("hour9").style.backgroundColor = "grey";
         console.log("grey");
       } else if (hourBlock === currentHour) {
         // change color to red
+
       } else if (hourBlock > (currentHour + 2)){
+
         // change color to green
       }
     },1000);
@@ -59,6 +64,7 @@ $(function () {
       var currentDay = dayjs().format('dddd, MMMM D');
       $("#currentDay").text(currentDay);
 
+
       // var currentHour = dayjs().format('H');
       // if 
     },1000);
@@ -68,3 +74,4 @@ $(function () {
 // if (//passthrough hour9EL.data < currentHour){hour9El.classList.add(past)}
 
 // setInterval that runs ^that function
+
