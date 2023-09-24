@@ -1,6 +1,22 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+var hour9El = document.getElementById('hour-9');
+var hour10El = document.getElementById('hour-10');
+var hour11El = document.getElementById('hour-11');
+var hour12El = document.getElementById('hour-12');
+var hour13El = document.getElementById('hour-13');
+var hour14El = document.getElementById('hour-14');
+var hour15El = document.getElementById('hour-15');
+var hour16El = document.getElementById('hour-16');
+var hour17El = document.getElementById('hour-17');
+
+// Maybe a better way 
+
+const 
+
+
 $(function () {
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
@@ -19,14 +35,19 @@ $(function () {
 
     setInterval(function() {
       var currentHour = dayjs().format('H');
-      hourBlock = 13;
+
+      hourBlock = 0;
+
+
       if (hourBlock < currentHour) {
         // change color to grey
         document.getElementById("hour9").style.backgroundColor = "grey";
         console.log("grey");
       } else if (hourBlock === currentHour) {
         // change color to red
-      } else {
+
+      } else if (hourBlock > (currentHour + 2)){
+
         // change color to green
       }
     },1000);
@@ -42,6 +63,15 @@ $(function () {
     setInterval(function() {
       var currentDay = dayjs().format('dddd, MMMM D');
       $("#currentDay").text(currentDay);
+
+
+      // var currentHour = dayjs().format('H');
+      // if 
     },1000);
 
 });
+
+// if (//passthrough hour9EL.data < currentHour){hour9El.classList.add(past)}
+
+// setInterval that runs ^that function
+
