@@ -13,6 +13,19 @@ hourEls[6] = document.getElementById('hour-15');
 hourEls[7] = document.getElementById('hour-16');
 hourEls[8] = document.getElementById('hour-17');
 
+let i = 0;
+while (i < hourEls.length) {
+  var currentHour = dayjs().format('H');
+  if (parseInt(hourEls[i].dataset.hour) < parseInt(currentHour)) {
+    hourEls[i].classList.add('past');
+  } else if (parseInt(hourEls[i].dataset.hour) === parseInt(currentHour)) {
+    hourEls[i].classList.add('present');
+  } else {
+    console.log('hit')
+    hourEls[i].classList.add('future');
+  }
+  i++;
+}
 // setInterval the runs every minute
 setInterval(function() {
 
@@ -20,19 +33,6 @@ setInterval(function() {
   var currentDay = dayjs().format('dddd, MMMM D');
   $('#current-day').text(currentDay);
 
-  // Time blocks are colored based on the current hour
-  let i = 0;
-  while (i < hourEls.length) {
-    var currentHour = dayjs().format('H');
-    if (hourEls[i].dataset.hour < currentHour) {
-      hourEls[i].classList.add('past');
-    } else if (hourEls[i].dataset.hour == currentHour) {
-      hourEls[i].classList.add('present');
-    } else {
-      hourEls[i].classList.add('future');
-    }
-    i++;
-  }
 }, 1000);
 
 
@@ -40,19 +40,15 @@ setInterval(function() {
 
 // Local Storage
 function saveItem() {
+  // console.log('hit');
+  // console.log($(this).siblings('.description').val());
+  // console.log($(this).parent().attr('id'))
   // Checks local storage for saved tasks, if none, creates an empty array
-  var userTasks = JSON.parse(localStorage.getItem("taskList")) || [];
-  var taskList = {
-    hour: hourEls[i].dataset.hour,
-    task: hourEls[i].value
-  };
-  userTasks.push(taskList);
-  localStorage.setItem("taskList", JSON.stringify(userTasks));
+  localStorage.setItem($(this).parent().attr('id'), $(this).siblings('.description').val());
 };
 
 // Event listener for save button
-var saveBtn = document.querySelectorAll('.saveBtn');
-saveBtn.onclick = saveItem;
+$('.saveBtn').on("click", saveItem);
 
 $(function () {
     // TODO: Add a listener for click events on the save button. This code should
@@ -78,3 +74,13 @@ $(function () {
 
 
 });
+
+$('#hour-9 .description').val(localStorage.getItem("hour-9"));
+$('#hour-10 .description').val(localStorage.getItem("hour-10"));
+$('#hour-11 .description').val(localStorage.getItem("hour-11"));
+$('#hour-12 .description').val(localStorage.getItem("hour-12"));
+$('#hour-13 .description').val(localStorage.getItem("hour-13"));
+$('#hour-14 .description').val(localStorage.getItem("hour-14"));
+$('#hour-15 .description').val(localStorage.getItem("hour-15"));
+$('#hour-16 .description').val(localStorage.getItem("hour-16"));
+$('#hour-17 .description').val(localStorage.getItem("hour-17"));
