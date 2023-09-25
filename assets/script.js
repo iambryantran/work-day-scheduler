@@ -2,20 +2,18 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-var hour9El = document.getElementById('hour-9');
-var hour10El = document.getElementById('hour-10');
-var hour11El = document.getElementById('hour-11');
-var hour12El = document.getElementById('hour-12');
-var hour13El = document.getElementById('hour-13');
-var hour14El = document.getElementById('hour-14');
-var hour15El = document.getElementById('hour-15');
-var hour16El = document.getElementById('hour-16');
-var hour17El = document.getElementById('hour-17');
-
-// Maybe a better way 
-
-const 
-
+// Array and Elements
+var currentHour;
+const hourEls = [];
+hourEls[0] = document.getElementById('hour-9');
+hourEls[1] = document.getElementById('hour-10');
+hourEls[2] = document.getElementById('hour-11');
+hourEls[3] = document.getElementById('hour-12');
+hourEls[4] = document.getElementById('hour-13');
+hourEls[5] = document.getElementById('hour-14');
+hourEls[6] = document.getElementById('hour-15');
+hourEls[7] = document.getElementById('hour-16');
+hourEls[8] = document.getElementById('hour-17');
 
 $(function () {
     // TODO: Add a listener for click events on the save button. This code should
@@ -33,24 +31,38 @@ $(function () {
     // current hour in 24-hour time?
     //
 
-    setInterval(function() {
-      var currentHour = dayjs().format('H');
+    // setInterval(function() {
+    //   currentHour = dayjs().format('H');
 
-      hourBlock = 0;
+    //   hourBlock = 0;
 
 
-      if (hourBlock < currentHour) {
-        // change color to grey
-        document.getElementById("hour9").style.backgroundColor = "grey";
-        console.log("grey");
-      } else if (hourBlock === currentHour) {
-        // change color to red
+    //   if (hourBlock < currentHour) {
+    //     // change color to grey
+    //     document.getElementById("hour9").style.backgroundColor = "grey";
+    //     console.log("grey");
+    //   } else if (hourBlock === currentHour) {
+    //     // change color to red
 
-      } else if (hourBlock > (currentHour + 2)){
+    //   } else if (hourBlock > (currentHour + 2)){
 
-        // change color to green
+    //     // change color to green
+    //   }
+    // },1000);
+
+    // Goes through the Array, then updates the class depending on the time comparison
+
+    for (i = 0; i <= hourEls.length; i++){
+      currentHour = dayjs().format('H');
+      // Adds time class to each element depending on time
+      if (hourEls[i].data < currentHour){
+        hourEls[i].classList.add(past)
+      } else if (hourEls[i].data == currentHour){
+        hourEls[i].classList.add(present)
+      } else {
+        hourEls[i].classList.add(future)
       }
-    },1000);
+    };
 
 
     // TODO: Add code to get any user input that was saved in localStorage and set
@@ -70,8 +82,3 @@ $(function () {
     },1000);
 
 });
-
-// if (//passthrough hour9EL.data < currentHour){hour9El.classList.add(past)}
-
-// setInterval that runs ^that function
-
