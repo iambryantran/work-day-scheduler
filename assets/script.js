@@ -35,9 +35,6 @@ setInterval(function() {
 
 }, 1000);
 
-
-
-
 // Local Storage
 function saveItem() {
   // console.log('hit');
@@ -71,7 +68,6 @@ $(function () {
     //
 
     // TODO: Add code to display the current date in the header of the page.
-
 
 });
 
